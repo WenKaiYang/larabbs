@@ -33,7 +33,7 @@ class ImageUploadHandler
             return false;
         }
 
-        $path = $file->storeAs(
+        $path = $file->storePubliclyAs(
             $folder_name, $filename
         );
 
