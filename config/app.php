@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'LaraBBS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://larabbs.klmis.cn'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY','base64:WN53h+jpZ8BGsjunXTNBEjqQKppHaJ0STSNuDVZsA3I='),
 
     'cipher' => 'AES-256-CBC',
 
