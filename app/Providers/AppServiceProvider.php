@@ -26,7 +26,10 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+	{
+		\App\Models\User::observe(\App\Observers\UserObserver::class);
+		\App\Models\Topic::observe(\App\Observers\TopicObserver::class);
+
 
         // 修改策略自动发现的逻辑
         Gate::guessPolicyNamesUsing(function ($modelClass) {
