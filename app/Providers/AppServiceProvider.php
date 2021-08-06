@@ -37,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
             return 'App\Policies\\' . class_basename($modelClass) . 'Policy';
         });
 
+        \Illuminate\Pagination\Paginator::useBootstrap();
     }
 }
