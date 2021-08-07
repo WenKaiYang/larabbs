@@ -20,13 +20,13 @@ class TopicReplied extends Notification implements ShouldQueue
         $this->reply = $reply;
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         // 开启通知的频道
-        return ['database', 'email'];
+        return ['database', 'mail'];
     }
 
-    public function toDatabase($notifiable)
+    public function toDatabase($notifiable): array
     {
         $topic = $this->reply->topic;
         $link = $topic->link(['#reply' . $this->reply->id]);
@@ -44,7 +44,7 @@ class TopicReplied extends Notification implements ShouldQueue
         ];
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
 
