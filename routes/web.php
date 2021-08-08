@@ -53,6 +53,4 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]
 
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
 
-Route::get('/test',function(){
-    dd(storage_path('images/avatars'));
-});
+Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
