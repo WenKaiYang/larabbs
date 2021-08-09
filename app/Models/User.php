@@ -14,6 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmailContract
 {
     use Traits\ActiveUserHelper;
+    use Traits\LastActivedAtHelper;
     use HasFactory, MustVerifyEmailTrait;
     use HasRoles;
 
@@ -114,4 +115,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         $this->attributes['avatar'] = $path;
     }
+
+
 }
