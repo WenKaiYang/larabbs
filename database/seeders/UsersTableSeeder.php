@@ -20,11 +20,15 @@ class UsersTableSeeder extends Seeder
         $user->name = "ELLa123";
         $user->email = "313097973@qq.com";
         $user->save();
+        // 初始化用户角色，将 1 号用户指派为『站长』
+        $user->assignRole('Founder');
 
         $user = User::find(2);
         $user->name = "System";
         $user->email = "553792575@qq.com";
         $user->save();
+        // 将 2 号用户指派为『管理员』
+        $user->assignRole('Maintainer');
 
         $user = User::find(3);
         $user->name = "Summer";

@@ -13,17 +13,17 @@ class Topic extends Model
         'title', 'body', 'category_id', 'user_id', 'excerpt', 'slug',
     ];
 
-    public function replies()
+    public function replies(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Reply::class);
     }
 
-    public function category()
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -55,8 +55,15 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
-    public function link($params = [])
+    public function link($params = []): string
     {
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
+
+    public function updateReplyCount()
+    {
+        $this->reply_count = $this->replies->count();
+        $this->save();
+    }
+
 }
