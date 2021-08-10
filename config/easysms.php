@@ -23,6 +23,11 @@ return [
             'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
             'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
             'sign_name' => '织梦行云',
+            'templates' => [
+                'default' => env('SMS_ALIYUN_TEMPLATE_DEFAULT'),
+                'register' => env('SMS_ALIYUN_TEMPLATE_REGISTER'),
+                'forget' => env('SMS_ALIYUN_TEMPLATE_FORGET'),
+            ]
         ],
     ],
 ];

@@ -19,18 +19,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::prefix('v1')->name('api.v1.')->group(function() {
-    Route::get('version', function() {
+Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
+    Route::get('version', function () {
         // abort(403, 'test');
         return 'this is version v1';
     })->name('version');
 
-
+    // 短信验证码
+    Route::post('verificationCodes', 'VerificationCodesController@store')
+        ->name('verificationCodes.store');
 
 });
 
-Route::prefix('v2')->name('api.v2.')->group(function() {
-    Route::get('version', function() {
+
+
+Route::prefix('v2')->namespace('Api')->name('api.v2.')->group(function () {
+    Route::get('version', function () {
         return 'this is version v2';
     })->name('version');
 });
