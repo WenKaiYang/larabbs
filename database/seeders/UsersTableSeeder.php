@@ -30,9 +30,9 @@ class UsersTableSeeder extends Seeder
         // 将 2 号用户指派为『管理员』
         $user->assignRole('Maintainer');
 
-        $user = User::find(3);
-        $user->name = "Summer";
-        $user->email = "Summer@example.com";
-        $user->save();
+//        $user = User::find(3);
+//        $user->name = "Summer";
+//        $user->email = "Summer@example.com";
+//        $user->save();
     }
 }
