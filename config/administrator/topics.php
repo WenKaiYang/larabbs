@@ -46,7 +46,7 @@ return [
     'edit_fields' => [
         'title' => [
             'title'    => '标题',
-            'type'               => 'relationship',
+            'type'               => 'textarea',
         ],
         'user' => [
             'title'              => '用户',
