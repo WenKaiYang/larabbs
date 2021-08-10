@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLastActivedAtToUsersTable extends Migration
+class AddPhoneToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddLastActivedAtToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('last_actived_at')->nullable();
+            $table->string('phone')->nullable()->unique()->after('name');
+            $table->string('email')->nullable()->change();
         });
     }
 
@@ -26,7 +27,8 @@ class AddLastActivedAtToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('last_actived_at');
+            $table->dropColumn('phone');
+            $table->string('email')->nullable(false)->change();
         });
     }
 }

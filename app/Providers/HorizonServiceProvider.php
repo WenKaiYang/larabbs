@@ -26,7 +26,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
 
         Horizon::auth(function ($request) {
             // 是否是站长
-            return Auth::user()->hasRole('Founder');
+            return Auth::check() && Auth::user()->hasRole('Founder');
         });
     }
 

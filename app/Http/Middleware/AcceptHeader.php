@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class RecordLastActivedTime
+class AcceptHeader
 {
     /**
      * Handle an incoming request.
@@ -17,11 +16,7 @@ class RecordLastActivedTime
      */
     public function handle(Request $request, Closure $next)
     {
-        // 如果是登录用户的话
-        if (Auth::check()) {
-            // 记录最后登录时间
-            Auth::user()->recordLastActivedAt();
-        }
+        $request->headers->set('Accept', 'application/json');
 
         return $next($request);
     }
