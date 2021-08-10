@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Support\Str;
+
 /**
  * 将当前请求的路由名称转换为 CSS 类名称
  * @return array|string|string[]
@@ -53,4 +55,22 @@ function model_plural_name($model)
 
     // 获取子串的复数形式，例如：传参 `user` 会得到 `users`
     return Str::plural($snake_case_name);
+}
+
+function setting($key, $default = '', $setting_name = 'site')
+{
+    if (!config()->get($setting_name)) {
+
+        if (!file_exists(storage_path("/administrator_settings/$setting_name.json"))) {
+            return null;
+        }
+
+        // Decode the settings to an associative array.
+        $site_settings = json_decode(file_get_contents(storage_path("/administrator_settings/$setting_name.json")), true);
+        // Add the site settings to the application configuration
+        config()->set($setting_name, $site_settings);
+    }
+
+    // Access a setting, supplying a default value
+    return config()->get($setting_name . '.' . $key, $default);
 }
