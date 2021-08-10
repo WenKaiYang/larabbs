@@ -34,4 +34,10 @@ return [
         'appid' => env('BAIDU_TRANSLATE_APPID', '20210328000747636'),
         'key' => env('BAIDU_TRANSLATE_KEY', 'cA9xj7RAi0hrFIGJ8sFa'),
     ],
+
+    'wechat' => [
+        'client_id' => env('WEIXIN_KEY'),
+        'client_secret' => env('WEIXIN_SECRET'),
+        'redirect' => env('WEIXIN_REDIRECT_URI'),
+    ],
 ];
