@@ -20,8 +20,8 @@ return [
             'file' => '/tmp/easy-sms.log',
         ],
         'aliyun' => [
-            'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID', 'LTAI5t6LXufvpCWD1xJunBQd'),
-            'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET', 'cISbHfC4V3pn89z7OOxYfeWl5ZQLDc'),
+            'access_key_id' => env('SMS_ALIYUN_ACCESS_KEY_ID'),
+            'access_key_secret' => env('SMS_ALIYUN_ACCESS_KEY_SECRET'),
             'sign_name' => '织梦行云',
         ],
     ],
