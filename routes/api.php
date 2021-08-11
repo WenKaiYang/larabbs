@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('v1')
     ->namespace('Api')
     ->name('api.v1.')
+    ->middleware('change-locale')
     ->group(function () {
 
         // 登录相关，次数/分钟
@@ -98,7 +99,7 @@ Route::prefix('v1')
                 // 活跃用户
                 Route::get('actived/users', 'UsersController@activedIndex')
                     ->name('actived.users.index');
-                
+
                 // 游客可以访问的接口 END
 
                 // 登录后可以访问的接口
