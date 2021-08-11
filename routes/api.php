@@ -95,6 +95,10 @@ Route::prefix('v1')
                 Route::get('links', 'LinksController@index')
                     ->name('links.index');
 
+                // 活跃用户
+                Route::get('actived/users', 'UsersController@activedIndex')
+                    ->name('actived.users.index');
+                
                 // 游客可以访问的接口 END
 
                 // 登录后可以访问的接口

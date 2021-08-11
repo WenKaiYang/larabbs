@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TopicFactory extends Factory
@@ -13,12 +15,15 @@ class TopicFactory extends Factory
     {
         $sentence = $this->faker->sentence();
 
+        $user_ids = User::with([])->pluck('id')->toArray();
+        $category_ids = Category::with([])->pluck('id')->toArray();
+
         return [
             'title' => $sentence,
             'body' => $this->faker->text(),
             'excerpt' => $sentence,
-            'user_id' => $this->faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-            'category_id' => $this->faker->randomElement([1, 2, 3, 4]),
+            'user_id' => $this->faker->randomElement($user_ids),
+            'category_id' => $this->faker->randomElement($category_ids),
         ];
     }
 }
