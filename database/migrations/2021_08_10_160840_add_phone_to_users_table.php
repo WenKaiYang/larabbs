@@ -27,6 +27,7 @@ class AddPhoneToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            \Illuminate\Support\Facades\DB::table('users')->truncate();
             $table->dropColumn('phone');
             $table->string('email')->nullable(false)->change();
         });
