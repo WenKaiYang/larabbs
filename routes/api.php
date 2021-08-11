@@ -124,6 +124,10 @@ Route::prefix('v1')
                     Route::get('notifications', 'NotificationsController@index')
                         ->name('notifications.index');
 
+                    // 通知统计
+                    Route::get('notifications/stats', 'NotificationsController@stats')
+                        ->name('notifications.stats');
+
 
                 });
                 // 登录后可以访问的接口 END
