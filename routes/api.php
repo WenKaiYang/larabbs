@@ -83,6 +83,14 @@ Route::prefix('v1')
                     'index', 'show'
                 ]);
 
+                // 某个话题回复列表
+                Route::get('topics/{topic}/replies', 'RepliesController@index')
+                    ->name('topics.replies.index');
+
+                // 某个用户的回复列表
+                Route::get('users/{user}/replies', 'RepliesController@userIndex')
+                    ->name('users.replies.index');
+
                 // 游客可以访问的接口 END
 
                 // 登录后可以访问的接口
