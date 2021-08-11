@@ -2,26 +2,44 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Auth\AuthenticationException;
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Overtrue\LaravelSocialite\Socialite;
-use  Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
+use Overtrue\LaravelSocialite\Socialite;
 
 class AuthorizationsController extends Controller
 {
+    public function store(AuthorizationRequest $request)
+    {
+        $username = $request->username;
+
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+            $credentials['email'] = $username :
+            $credentials['phone'] = $username;
+
+        $credentials['password'] = $request->password;
+
+        if (!$token = Auth::guard('api')->attempt($credentials)) {
+            throw new AuthenticationException('用户名或密码错误');
+        }
+
+        return $this->respondWithToken($token)->setStatusCode(201);
+    }
+
     public function socialStore($type, SocialAuthorizationRequest $request)
     {
-        //创建第三方登录驱动
         $driver = Socialite::create($type);
 
         try {
             if ($code = $request->code) {
                 $oauthUser = $driver->userFromCode($code);
             } else {
+                $tokenData['access_token'] = $request->access_token;
+
                 // 微信需要增加 openid
                 if ($type == 'wechat') {
                     $driver->withOpenid($request->openid);
@@ -59,26 +77,7 @@ class AuthorizationsController extends Controller
 
                 break;
         }
-
         $token = auth('api')->login($user);
-        return $this->respondWithToken($token)->setStatusCode(201);
-    }
-
-    public function store(AuthorizationRequest $request)
-    {
-        $username = $request->username;
-
-        filter_var($username, FILTER_VALIDATE_EMAIL) ?
-            $credentials['email'] = $username :
-            $credentials['phone'] = $username;
-
-        $credentials['password'] = $request->password;
-
-        if (!$token = Auth::guard('api')->attempt($credentials)) {
-            throw new AuthenticationException('用户名或密码错误');
-        }
-
-
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
